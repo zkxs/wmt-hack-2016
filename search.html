@@ -63,11 +63,12 @@
                                     var itemId = "" + item.itemId; // int
                                     var upc = item.upc; // string
                                     var name = item.name; // string
+                                    var price = item.salePrice // number
                                     
                                     console.log(item);
                                     
                                     var newCartElement = document.createElement("li");
-                                    var cartText = document.createTextNode(name);
+                                    var cartText = document.createTextNode(name + " (" + price + ")");
                                     newCartElement.appendChild(cartText);
                                     cartContainer.appendChild(newCartElement);
                                     
