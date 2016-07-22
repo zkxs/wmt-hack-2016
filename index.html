@@ -9,20 +9,87 @@
 		<!-- <link rel="stylesheet" type="text/css" href="/css/style.css">
 		<link href="/js/lightbox/css/lightbox.min.css" rel="stylesheet">
         dvj6prxrbf9t7pe7cqf75tfb -->
-        <script type="text/javascript" src="util.js"/>
-        <script type="text/javascript">
-            var queryParams = getGetParameters();
-            console.log(queryParams);
-        </script>
+        <script type="text/javascript" src="util.js"></script>
     </head>
     <body>
         Hello, World!
         <form action="" method="get">
             List Name: <input type="text" name="listname"><br>
-            <input type="text" name="items[]"><br>
-            <input type="text" name="items[]"><br>
+            <input type="text" name="items"><br>
+            <input type="text" name="items"><br>
             <input type="submit" value="Submit">
         </form>
+        
+        <div id="listContainer"></div>
+        <div><ul id="cartContainer"></ul></div>
+        <div class="walmart-buy-now" data-item-walmartid="44982009" data-color="blue"></div> <!-- data-publisherid="{Publisher ID}" -->
+        
+        <script type="text/javascript">
+            var queryParams = getGetParameters();
+            console.log(queryParams);
+            var listContainer = document.getElementById("listContainer");
+            var cartContainer = document.getElementById("cartContainer");
+            
+            if (queryParams) {
+                if (queryParams.listname && queryParams.items) {
+                    var list = document.createElement("ul");
+                    var cartString = "";
+                
+                    var newElement = document.createElement("h3");
+                    var text = document.createTextNode(queryParams.listname);
+                    newElement.appendChild(text);
+                    listContainer.appendChild(newElement);
+                
+                    queryParams.items.forEach(function(item) {
+                        newElement = document.createElement("li");
+                        text = document.createTextNode(item);
+                        newElement.appendChild(text);
+                        list.appendChild(newElement);
+                        
+                        
+                        lookupItem(item, function(req) {
+                            if (req.readyState == 4 && req.status == 200) {
+                                var response = JSON.parse(req.responseText);
+                                
+                                if (response.numItems == 1) {
+                                    var item = response.items[0];
+                                    var itemId = item.itemId; // int
+                                    var upc = item.upc; // string
+                                    var name = item.name; // string
+                                    
+                                    console.log(item);
+                                    
+                                    var newCartElement = document.createElement("li");
+                                    var cartText = document.createTextNode(name);
+                                    newCartElement.appendChild(cartText);
+                                    cartContainer.appendChild(newCartElement);
+                                    
+                                } else {
+                                    // handle no item
+                                }
+                            }
+                        });
+                    });
+                    listContainer.appendChild(list);
+                    
+                } else {
+                    console.log("queryparams was missing stuff");
+                }
+            } else {
+                console.log("queryparams was falsey");
+            }
+            
+            
+        </script>
+        <script>
+            (function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "https://affil.walmart.com/buttons/buynow.min.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'walmart-buynow-js'));
+        </script>
     </body>
 </html>
 
