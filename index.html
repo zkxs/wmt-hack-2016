@@ -65,7 +65,7 @@
                                     cartContainer.appendChild(newCartElement);
                                     
                                     try {
-                                        walmartBuyNow.addItem("buy-button", itemId);
+                                        walmartBuyNow.addItem("buy-button", {id: itemId, type: "walmart_id"});
                                     } catch (e) {
                                         console.log(e);
                                     }
