@@ -13,7 +13,11 @@
         
         <div id="listContainer"></div>
         <div><ul id="cartContainer"></ul></div>
-        <div id="buy-button" class="walmart-buy-now" data-color="blue" style="visibility: hidden"></div> <!-- data-publisherid="{Publisher ID}" -->
+        
+        <div id="results" style="visibility: hidden">
+            <div id="totalPrice"></div>
+            <div id="buy-button" class="walmart-buy-now" data-color="blue"></div> <!-- data-publisherid="{Publisher ID}" -->
+        </div>
         
         <script type="text/javascript">
             // setup buynow button
@@ -30,7 +34,9 @@
             console.log(queryParams);
             var listContainer = document.getElementById("listContainer");
             var cartContainer = document.getElementById("cartContainer");
-            var buyButton = document.getElementById("buy-button");
+            var resultContainer = document.getElementById("results");
+            var priceContainer = document.getElementById("totalPrice");
+            var totalPrice = 0;
             
             try {
                 walmartBuyNow.clearAllItems("buy-button");
@@ -64,6 +70,8 @@
                                     var upc = item.upc; // string
                                     var name = item.name; // string
                                     var price = item.salePrice // number
+                                    totalPrice += price;
+                                    priceContainer.textContent = totalPrice;
                                     
                                     console.log(item);
                                     
@@ -82,7 +90,7 @@
                                     }
                                     
                                     console.log("Showing button");
-                                    buyButton.style.visibility = "visible";
+                                    resultContainer.style.visibility = "visible";
                                     
                                 } else {
                                     // handle no item
