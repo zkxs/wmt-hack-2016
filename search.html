@@ -75,7 +75,7 @@
                                     console.log(item);
                                     
                                     var newCartElement = document.createElement("li");
-                                    var cartText = document.createTextNode(name + " ($" + price + ")");
+                                    var cartText = document.createTextNode(name + " ($" + price.toFixed(2) + ")");
                                     newCartElement.appendChild(cartText);
                                     cartContainer.appendChild(newCartElement);
                                     
