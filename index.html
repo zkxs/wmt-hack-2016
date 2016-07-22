@@ -9,9 +9,20 @@
 		<!-- <link rel="stylesheet" type="text/css" href="/css/style.css">
 		<link href="/js/lightbox/css/lightbox.min.css" rel="stylesheet">
         dvj6prxrbf9t7pe7cqf75tfb -->
+        <script type="text/javascript" src="util.js"/>
+        <script type="text/javascript">
+            var queryParams = getGetParameters();
+            console.log(queryParams);
+        </script>
     </head>
     <body>
         Hello, World!
+        <form action="" method="get">
+            List Name: <input type="text" name="listname"><br>
+            <input type="text" name="items[]"><br>
+            <input type="text" name="items[]"><br>
+            <input type="submit" value="Submit">
+        </form>
     </body>
 </html>
 
