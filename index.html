@@ -40,7 +40,10 @@
             var listContainer = document.getElementById("listContainer");
             var cartContainer = document.getElementById("cartContainer");
             var buyButton = document.getElementById("buy-button");
-            walmartBuyNow.clearAllItems("buy-button");
+            
+            if (walmartBuyNow) {
+                walmartBuyNow.clearAllItems("buy-button");
+            }
             
             if (queryParams) {
                 if (queryParams.listname && queryParams.items) {
