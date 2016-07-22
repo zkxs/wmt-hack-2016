@@ -25,6 +25,16 @@
         <div id="buy-button" class="walmart-buy-now" data-color="blue" style="visibility: hidden"></div> <!-- data-publisherid="{Publisher ID}" -->
         
         <script type="text/javascript">
+            // setup buynow button
+            (function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "https://affil.walmart.com/buttons/buynow.min.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'walmart-buynow-js'));
+        
+        
             var queryParams = getGetParameters();
             console.log(queryParams);
             var listContainer = document.getElementById("listContainer");
@@ -93,15 +103,6 @@
             }
             
             
-        </script>
-        <script>
-            (function(d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) return;
-                js = d.createElement(s); js.id = id;
-                js.src = "https://affil.walmart.com/buttons/buynow.min.js";
-                fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'walmart-buynow-js'));
         </script>
     </body>
 </html>
