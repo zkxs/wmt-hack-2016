@@ -64,7 +64,11 @@
                                     newCartElement.appendChild(cartText);
                                     cartContainer.appendChild(newCartElement);
                                     
-                                    walmartBuyNow.addItem("buy-button", itemId);
+                                    try {
+                                        walmartBuyNow.addItem("buy-button", itemId);
+                                    } catch (e) {
+                                        console.log(e);
+                                    }
                                     
                                     console.log("Showing button");
                                     buyButton.style.visibility = "visible";
