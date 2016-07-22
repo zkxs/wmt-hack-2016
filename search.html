@@ -32,8 +32,10 @@
             var cartContainer = document.getElementById("cartContainer");
             var buyButton = document.getElementById("buy-button");
             
-            if (walmartBuyNow) {
+            try {
                 walmartBuyNow.clearAllItems("buy-button");
+            } catch (e) {
+                // i don't care
             }
             
             if (queryParams) {
